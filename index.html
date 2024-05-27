@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NeuroSpec 3D Surface Plots</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        .plot-container {
+            width: 45%;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .plot-container h3 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>NeuroSpec 3D Surface Plots</h1>
+    <div class="plot-container">
+        <h3>Left Brain Wave - VERTEX</h3>
+        <div id="surfacePlot1" style="width: 100%; height: 400px;"></div>
+    </div>
+    <div class="plot-container">
+        <h3>Right Brain Wave - VERTEX</h3>
+        <div id="surfacePlot2" style="width: 100%; height: 400px;"></div>
+    </div>
+    <div class="plot-container">
+        <h3>Left Brain Wave - Band</h3>
+        <div id="surfacePlot3" style="width: 100%; height: 400px;"></div>
+    </div>
+    <div class="plot-container">
+        <h3>Right Brain Wave - Band</h3>
+        <div id="surfacePlot4" style="width: 100%; height: 400px;"></div>
+    </div>
+
+    <script>
+        // Function to generate sample data for surface plots
+        function generateSurfaceData(rows, cols) {
+            const z = [];
+            for (let i = 0; i < rows; i++) {
+                const row = [];
+                for (let j = 0; j < cols; j++) {
+                    row.push(Math.sin(i / 5) * Math.cos(j / 5) * 10 + Math.random() * 5);
+                }
+                z.push(row);
+            }
+            return z;
+        }
+
+        // Generate data for the surface plots
+        const zData1 = generateSurfaceData(50, 50);
+        const zData2 = generateSurfaceData(50, 50);
+        const zData3 = generateSurfaceData(50, 50);
+        const zData4 = generateSurfaceData(50, 50);
+
+        // Data for the surface plots
+        const surfaceData1 = { z: zData1, type: 'surface' };
+        const surfaceData2 = { z: zData2, type: 'surface' };
+        const surfaceData3 = { z: zData3, type: 'surface' };
+        const surfaceData4 = { z: zData4, type: 'surface' };
+
+        // Plot the surface plots
+        Plotly.newPlot('surfacePlot1', [surfaceData1]);
+        Plotly.newPlot('surfacePlot2', [surfaceData2]);
+        Plotly.newPlot('surfacePlot3', [surfaceData3]);
+        Plotly.newPlot('surfacePlot4', [surfaceData4]);
+    </script>
+</body>
+</html>
